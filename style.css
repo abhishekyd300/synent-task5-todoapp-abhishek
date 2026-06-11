@@ -153,6 +153,18 @@ gap: 10px;
 
 }
 
+.complete-btn {
+
+background: #3498db;
+
+}
+
+.complete-btn:hover {
+
+background: #2878b8;
+
+}
+
 .delete-btn {
 
 background: #ff4d4d;

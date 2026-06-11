@@ -1,69 +1,110 @@
-let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+let tasks =
+JSON.parse(
+localStorage.getItem("tasks")
+) || [];
 
-// Load tasks on page load
-window.onload = function () {
-    renderTasks();
-};
+renderTasks();
 
 function saveTasks() {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+localStorage.setItem(
+"tasks",
+JSON.stringify(tasks)
+);
 }
 
 function addTask() {
-    const input = document.getElementById("taskInput");
-    const taskText = input.value.trim();
 
-    if (taskText === "") {
-        alert("Please enter a task!");
-        return;
-    }
+const input =
+document.getElementById(
+"taskInput"
+);
 
-    tasks.push({
-        text: taskText,
-        completed: false
-    });
+const text =
+input.value.trim();
 
-    saveTasks();
-    renderTasks();
-
-    input.value = "";
+if (!text) {
+alert("Enter a task");
+return;
 }
 
-function renderTasks() {
-    const list = document.getElementById("taskList");
+tasks.push({
+text,
+completed: false
+});
 
-    list.innerHTML = "";
+saveTasks();
 
-    tasks.forEach((task, index) => {
-        const li = document.createElement("li");
+renderTasks();
 
-        li.innerHTML = `
-            <span class="task-text ${task.completed ? "completed" : ""}"
-                onclick="toggleTask(${index})">
-                ${task.text}
-            </span>
+input.value = "";
 
-            <button class="delete-btn"
-                onclick="deleteTask(${index})">
-                Delete
-            </button>
-        `;
-
-        list.appendChild(li);
-    });
 }
 
-function toggleTask(index) {
-    tasks[index].completed =
-        !tasks[index].completed;
+function toggleComplete(index){
 
-    saveTasks();
-    renderTasks();
+tasks[index].completed =
+!tasks[index].completed;
+
+saveTasks();
+
+renderTasks();
+
 }
 
-function deleteTask(index) {
-    tasks.splice(index, 1);
+function deleteTask(index){
 
-    saveTasks();
-    renderTasks();
+tasks.splice(index,1);
+
+saveTasks();
+
+renderTasks();
+
+}
+
+function renderTasks(){
+
+const list =
+document.getElementById(
+"taskList"
+);
+
+list.innerHTML = "";
+
+tasks.forEach((task,index)=>{
+
+const li =
+document.createElement("li");
+
+li.className = "task";
+
+li.innerHTML = `
+<div class="task-text ${task.completed ? "completed" : ""}">
+${task.text}
+</div>
+
+<div class="actions">
+
+<button
+class="complete-btn"
+onclick="toggleComplete(${index})">
+
+${task.completed ? "Undo" : "Complete"}
+
+</button>
+
+<button
+class="delete-btn"
+onclick="deleteTask(${index})">
+
+Delete
+
+</button>
+
+</div>
+`;
+
+list.appendChild(li);
+
+});
+
 }
