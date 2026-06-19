@@ -31,9 +31,7 @@ Todo-App/
 
 ## 🎥 Demo Video
 
-Add your demo video link here:
-
-`https://youtu.be/cOc9deEpzR8?si=BTGjEz7fYou1zdoM`
+https://youtu.be/cOc9deEpzR8?si=BTGjEz7fYou1zdoM
 
 ## 📸 Preview
 
